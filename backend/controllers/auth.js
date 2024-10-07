@@ -105,3 +105,30 @@ export const Logout = (req, res) => {
     return res.status(500).json(err);
   }
 };
+
+export const refreshToken = (req, res) => {
+  const refreshToken = req.cookies?.refreshToken;
+  // console.log("req.cookies", req.cookies);
+
+  if (!refreshToken) return res.json({ valid: false, message: "No Token" });
+
+  jwt.verify(refreshToken, "jwt-refresh-token-secret-key", (err, decoded) => {
+    if (err) return res.json({ valid: false, message: "INVALID" });
+    delete decoded.iat;
+    delete decoded.exp;
+    const newAccessToken = jwt.sign(decoded, "jwt-access-token-secret-key", {
+      expiresIn: "1d",
+    });
+    const refreshToken = jwt.sign(decoded, "jwt-refresh-token-secret-key", {
+      expiresIn: "7d",
+    });
+    res.cookie("accessToken", newAccessToken, { maxAge: 1000 * 60 * 60 * 24 });
+    res.cookie("refreshToken", refreshToken, {
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+    });
+    res.json({ valid: true });
+  });
+};
