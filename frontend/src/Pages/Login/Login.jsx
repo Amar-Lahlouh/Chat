@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 
 function Login() {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
   const [Error, setError] = useState("");
   const { login, currentUser } = useContext(AuthContext);
   let data = {
-    Email,
-    Password,
+    username,
+    password,
   };
+  console.log("data", data);
   async function handlesubmit() {
     try {
       console.log(data, "data");
@@ -40,14 +41,14 @@ function Login() {
             <input
               type="text"
               placeholder="Enter username"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setusername(e.target.value)}
               className="w-full input input-bordered h-10 mt-9"
             />
           </div>
           <div>
             <input
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setpassword(e.target.value)}
               placeholder="Enter password"
               className="w-full input input-bordered h-10 mt-9"
             />

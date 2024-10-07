@@ -6,12 +6,13 @@ export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
   const login = async (data) => {
-    console.log(data);
+    console.log("logindaataaaaa", data);
     const res = await axios.post("http://localhost:3000/auth/login", data, {
       withCredentials: true,
     });
     console.log("afterrrrrrrrrr");
     const user = res.data?.user;
+    console.log("user context", user);
   };
 
   useEffect(() => {
