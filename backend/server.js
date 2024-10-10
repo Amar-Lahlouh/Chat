@@ -6,21 +6,22 @@ import userRouter from "./routes/user.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import bodyParser from "body-parser";
 const app = express();
 dotenv.config();
 const port = process.env.PORT;
 app.use(express.json());
-app.use(cookieParser());
+app.listen(port, () => {
+  console.log("Server Running on port 3000");
+});
 app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
   })
 );
-
-app.listen(port, () => {
-  console.log("Server Running on port 3000");
-});
+app.use(cookieParser());
+app.use(bodyParser.json());
 mongoose.connect(process.env.MONGO_URL, { dbName: "ChatWeb" }).then(() => {
   console.log("Database connected");
 });

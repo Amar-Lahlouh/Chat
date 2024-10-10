@@ -2,14 +2,14 @@ import React from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { LuMessagesSquare } from "react-icons/lu";
-import noChatSelected from "./noChatSelected";
+import NoChatSelected from "./NoChatSelected";
 function MessageContainer() {
   const noChatSelecte = true;
 
   return (
     <div className="md:min-w-[450px] flex flex-col">
       {noChatSelecte ? (
-        <noChatSelected />
+        <NoChatSelected />
       ) : (
         <>
           <div className="bg-slate-500 px-4 py-2 mb-2">

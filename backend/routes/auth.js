@@ -1,8 +1,10 @@
 import express from "express";
-import { Login, Signup, refreshToken } from "../controllers/auth.js";
-
+import { Login, Signup, refreshToken, Logout } from "../controllers/auth.js";
+// import { protectRoute } from "../middlewares/protectRoute.js";
 const router = express.Router();
 router.post("/signup", Signup);
+// router.use(protectRoute);
 router.post("/login", Login);
 router.post("/refresh", refreshToken);
+router.post("/logout", Logout);
 export default router;

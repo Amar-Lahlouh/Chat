@@ -30,7 +30,9 @@ function Signup() {
     console.log("dTa", data);
     try {
       console.log("byyyee");
-      const res = await axios.post("http://localhost:3000/auth/signup", data);
+      const res = await axios.post("http://localhost:3000/auth/signup", data, {
+        withCredentials: true,
+      });
       console.log("ene");
       navigate("/login", { replace: true });
     } catch (err) {

@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { LuMessagesSquare } from "react-icons/lu";
-function noChatSelected() {
+import { AuthContext } from "../../Context/AuthContext";
+function NoChatSelected() {
+  console.log("NoChatSelected");
+  const { currentUser } = useContext(AuthContext);
+
+  let username = currentUser?.user?.username;
   return (
-    <div>
+    <div className="h-full">
       <div className="flex items-center justify-center w-full h-full">
         <div className="px-4 text-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col items-center gap-2">
-          <p>Welcome John Doe</p>
+          <p>Welcome {username}</p>
           <p>Select a chat to start messaging</p>
           <LuMessagesSquare className="text-3xl md:text-6xl text-center" />
         </div>
@@ -14,4 +19,4 @@ function noChatSelected() {
   );
 }
 
-export default noChatSelected;
+export default NoChatSelected;

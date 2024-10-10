@@ -13,6 +13,8 @@ export const AuthContextProvider = ({ children }) => {
     console.log("afterrrrrrrrrr");
     const user = res.data?.user;
     console.log("user context", user);
+    setCurrentUser(user);
+    window.location.href = "/";
   };
 
   useEffect(() => {
@@ -51,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
       }
     );
     setCurrentUser(null);
-    window.location.href = "/";
+    window.location.href = "/login";
   };
   return (
     <AuthContext.Provider
