@@ -6,7 +6,7 @@ export const sendMessage = async (req, res) => {
     const { message } = req.body;
     console.log("message", message);
     const { id: recieverId } = req.params; //reciever id
-    const senderId = req.user.userid; //sender id
+    const senderId = req.user?.userid; //sender id
     console.log("reciever id", recieverId);
     console.log("senderid", senderId);
     // Get Conversation
@@ -23,7 +23,7 @@ export const sendMessage = async (req, res) => {
     }
     //create message in the Message table
     const newMessage = new Message({ senderId, recieverId, message });
-    console.log("new messafe", newMessage);
+    console.log("new message", newMessage);
     // Bas i did create a message i add it to the conversation
     if (newMessage) conversation.message.push(newMessage._id);
 

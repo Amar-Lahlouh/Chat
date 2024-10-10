@@ -4,7 +4,7 @@ import axios from "axios";
 import { getRandomEmoji } from "../../utils/emojis";
 
 function Conversations() {
-  const [Conversations, setConversations] = useState("");
+  const [Conversations, setConversations] = useState([]);
   useEffect(() => {
     async function GetConvos() {
       try {
@@ -25,7 +25,7 @@ function Conversations() {
         <ConvComp />
       ))} */}
 
-      {Conversations.map((conv) => (
+      {Conversations.map((conv, idx) => (
         <ConvComp
           key={conv.id}
           convo={conv}

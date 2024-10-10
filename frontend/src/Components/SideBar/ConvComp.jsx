@@ -1,20 +1,30 @@
 import React from "react";
+import useConversation from "../../zustand/useConversation";
 import s from "../../../public/b1.jpg";
-function ConvComp() {
+function ConvComp({ convo, lastIdx, emoji }) {
+  const { selectedConversation, setselectedConversation } = useConversation();
+
+  const isSelected = selectedConversation?._id === convo._id;
+
   return (
     <>
-      <div className="flex  gap-2 items-center hover:bg-sky-500 rounded py-1 p-2 cursor-pointer">
+      <div
+        className={`flex  gap-2 items-center hover:bg-sky-500 rounded py-1 p-2 cursor-pointer ${
+          isSelected ? "bg-sky-500" : ""
+        }`}
+        onClick={() => setselectedConversation(convo)}
+      >
         <div className="avatar online">
           <div className="w-12 rounded-full">
-            <img src={s} alt="" />
+            <img src={convo.profilePic} alt="" />
           </div>
         </div>
         <div className="flex  justify-between flex-1">
-          <p className="font-bold text-gray-200">John Doe</p>
-          <span className="text-xl">🌸</span>
+          <p className="font-bold text-gray-200">{convo.fullName}</p>
+          <span className="text-xl">{emoji}</span>
         </div>
       </div>
-      <hr />
+      {!lastIdx && <hr />}
     </>
   );
 }

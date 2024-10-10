@@ -66,8 +66,8 @@ export const Login = async (req, res) => {
         expiresIn: "7d",
       }
     );
-    console.log("accesstoken", accesstoken);
-    console.log("refreshtoken", refreshToken);
+    // console.log("accesstoken", accesstoken);
+    // console.log("refreshtoken", refreshToken);
     // Set Access Token in cookie
     res.cookie("accessToken", accesstoken, {
       maxAge: 1000 * 60 * 60 * 24,
@@ -112,7 +112,7 @@ export const Logout = (req, res) => {
 
 export const refreshToken = (req, res) => {
   const refreshToken = req.cookies?.refreshToken;
-  console.log("req.cookies", req.cookies);
+  // console.log("req.cookies", req.cookies);
 
   if (!refreshToken) return res.json({ valid: false, message: "No Token" });
 
