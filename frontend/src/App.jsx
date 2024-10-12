@@ -10,9 +10,9 @@ function App() {
     <div className="p-4 h-screen flex items-center justify-center">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/home" element={<Home />} />
         </Routes>
         <Toaster />
       </BrowserRouter>

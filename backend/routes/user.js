@@ -4,7 +4,7 @@ import { getUsersForSideBar, GetMe } from "../controllers/user.js";
 import { VerifyAuth } from "../middlewares/VerifyAuth.js";
 
 const router = express.Router();
-
+router.use(VerifyAuth);
 router.get("/Allusers", getUsersForSideBar);
 // router.use(protectRoute);
 router.use(VerifyAuth);

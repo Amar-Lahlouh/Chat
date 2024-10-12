@@ -2,4 +2,6 @@ body {
   background-image: url("../public/b1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100vh;
+  width: full;
 }

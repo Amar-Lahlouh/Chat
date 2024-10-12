@@ -1,11 +1,13 @@
 import React from "react";
 import useConversation from "../../zustand/useConversation";
 import s from "../../../public/b1.jpg";
+import { useSocketContext } from "../../Context/SocketContext";
 function ConvComp({ convo, lastIdx, emoji }) {
   const { selectedConversation, setselectedConversation } = useConversation();
 
   const isSelected = selectedConversation?._id === convo._id;
-
+  const { onlineUsers } = useSocketContext();
+  const isOnline = onlineUsers.includes(convo._id);
   return (
     <>
       <div
@@ -14,7 +16,7 @@ function ConvComp({ convo, lastIdx, emoji }) {
         }`}
         onClick={() => setselectedConversation(convo)}
       >
-        <div className="avatar online">
+        <div className={` ${isOnline ? "online" : ""} avatar `}>
           <div className="w-12 rounded-full">
             <img src={convo.profilePic} alt="" />
           </div>

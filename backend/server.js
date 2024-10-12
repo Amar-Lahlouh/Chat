@@ -7,11 +7,12 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import bodyParser from "body-parser";
-const app = express();
+import { app, server } from "./socket/socket.js";
+
 dotenv.config();
 const port = process.env.PORT;
 app.use(express.json());
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("Server Running on port 3000");
 });
 app.use(

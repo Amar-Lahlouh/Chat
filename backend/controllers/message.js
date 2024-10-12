@@ -1,5 +1,6 @@
 import Conversation from "../models/Conversation.js";
 import Message from "../models/Message.js";
+import { getRecieverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   try {
@@ -27,9 +28,16 @@ export const sendMessage = async (req, res) => {
     // Bas i did create a message i add it to the conversation
     if (newMessage) conversation.message.push(newMessage._id);
 
-    // SOCKET IO FUNCTIONALITY
-
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    // SOCKET IO FUNCTIONALITY
+    // use to send events to specific client
+    const recieverSocketId = getRecieverSocketId(recieverId);
+    console.log("recieverSocketId", recieverSocketId);
+    if (recieverSocketId) {
+      io.to(recieverSocketId).emit("newMessage", newMessage);
+    }
+
     res.status(201).json(newMessage);
   } catch (err) {
     console.log("err", err);

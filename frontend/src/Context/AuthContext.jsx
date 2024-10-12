@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
     const user = res.data?.user;
     console.log("user context", user);
     setCurrentUser(user);
-    window.location.href = "/";
+    window.location.href = "/home";
   };
 
   useEffect(() => {
